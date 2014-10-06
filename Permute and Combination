@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <vector>
+#include <string.h>
+
+using namespace std;
+int pn=0;
+int zn=0;
+
+void swap (char *x, char *y)
+{
+	char temp;
+	temp = *x;
+	*x = *y;
+	*y = temp;
+}
+void permute(char *a, int i, int n) 
+{
+	int j; 
+	if (i == n)
+	{ pn++; printf("%s\n", a);}
+	else
+	{
+		for (j = i; j <= n; j++)
+		{
+			swap((a+i), (a+j));
+			permute(a, i+1, n);
+			swap((a+i), (a+j)); 
+		}
+	}
+} 
+
+vector<char> ss;
+void combine(char s[])
+{
+	for(int i=0;i<strlen(s);i++)
+	{
+		ss.push_back(s[i]);
+		for(int j=0;j<ss.size();j++)	
+			printf("%c",ss[j]);		
+		zn++; printf("\n");
+		if (strlen(s)!=1) combine(s+i+1);
+		ss.erase(ss.begin()+ss.size()-1);
+	}
+}
+
+
+int main()
+{
+	char s[]="wxyz";
+
+	permute(s,0,3);
+	printf("pn=%d\n\n",pn);
+
+	combine(s);
+	printf("zn=%d\n",zn);
+
+	return 0;
+}
+
