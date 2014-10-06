@@ -48,7 +48,7 @@ int main()
 {
 	char s[]="wxyz";
 
-	permute(s,0,3);
+	permute(s,0,strlen(s)-1);
 	printf("pn=%d\n\n",pn);
 
 	combine(s);
